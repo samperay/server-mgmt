@@ -1,28 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .server {
-            border: 3px solid #ccc;
-            padding: 30px;
-            margin: 20px 650px 0;
-            border-radius: 5px;
-            width:400px;
-            height: 400px;
-        }
-        .server h3 {
-            margin: 0;
-            padding: 0;
-        }
-        .server p {
-            margin: 6px 0;
-        }
-    </style>
-</head>
-<body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .server {
+        border: 3px solid #ccc;
+        padding: 30px;
+        margin: 20px 650px 0;
+        border-radius: 5px;
+        width:400px;
+        height: 400px;
+    }
+    .server h3 {
+        margin: 0;
+        padding: 0;
+    }
+    .server p {
+        margin: 10px 0;
+    }
+</style>
+
     {% for server in servers %}
     <div class="server">
         <h3>{{ server.name }}</h3>
@@ -37,5 +33,4 @@
         <p><strong>Last Updated:</strong> {{ server.last_updated }}</p>
     </div>
     {% endfor %}
-</body>
-</html>
+
