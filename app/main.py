@@ -1,4 +1,7 @@
-from fastapi import FastAPI, Request, Depends, Form, HTTPException
+from ast import For
+from asyncio import Server
+import stat
+from fastapi import FastAPI, Request, Depends, Form, HTTPException, status
 from app.database import engine
 from app.models import Base
 from app.routers import servers
@@ -29,7 +32,7 @@ def read_home(request: Request):
 
 
 @app.get("/servers", response_class=HTMLResponse)
-def read_servers(request: Request, db: Session = Depends(database.get_db)):
+def get_servers(request: Request, db: Session = Depends(database.get_db)):
     servers = db.query(models.Server).all()
     servers = [server.__dict__ for server in servers]
     for server in servers:
@@ -43,3 +46,38 @@ def read_servers(request: Request, db: Session = Depends(database.get_db)):
         },
         status_code=200,
     )
+
+
+@app.post("/search", response_class=RedirectResponse)
+def search_servers(name: str = Form(...)):
+    return RedirectResponse("/servers/" + name, status_code=302)
+
+
+@app.get("/servers/{name}", response_class=HTMLResponse)
+def get_server_by_id(
+    name: str, request: Request, db: Session = Depends(database.get_db)
+):
+
+    server = db.query(models.Server).filter((models.Server.hostname == name)).first()
+
+    if server is not None:
+        server = server.__dict__
+        server.pop("_sa_instance_state")
+
+        response = templates.TemplateResponse(
+            "search.html",
+            {
+                "request": request,
+                "server": server,
+            },
+        )
+        return response
+    else:
+        response = templates.TemplateResponse(
+            "search.html",
+            {
+                "request": request,
+                "server": None,
+            },
+        )
+        return response

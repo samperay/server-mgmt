@@ -1,0 +1,36 @@
+
+<style>
+    body {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+</style>
+<div class="container">
+    <div>
+        {% if server %}
+            <h3>{{ server.name }}</h3>
+            <p><strong>Hostname:</strong> {{ server.hostname }}</p>
+            <p><strong>IP Address:</strong> {{ server.ip_address }}</p>
+            <p><strong>Location:</strong> {{ server.location }}</p>
+            <p><strong>Status:</strong> {{ server.status }}</p>
+            <p><strong>Operating System:</strong> {{ server.os }}</p>
+            <p><strong>CPU Cores:</strong> {{ server.cpu_cores }}</p>
+            <p><strong>Memory (GB):</strong> {{ server.memory_gb }}</p>
+            <p><strong>Storage (GB):</strong> {{ server.storage_gb }}</p>
+            <p><strong>Last Updated:</strong> {{ server.last_updated }}</p>
+        {% else %}
+            <h3>Unable to find the server, please check the hostname again !</h3>
+        {% endif %}
+    </div>
+</div>

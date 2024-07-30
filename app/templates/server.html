@@ -1,3 +1,6 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -19,18 +22,19 @@
     }
 </style>
 
-    {% for server in servers %}
-    <div class="server">
-        <h3>{{ server.name }}</h3>
-        <p><strong>Hostname:</strong> {{ server.hostname }}</p>
-        <p><strong>IP Address:</strong> {{ server.ip_address }}</p>
-        <p><strong>Location:</strong> {{ server.location }}</p>
-        <p><strong>Status:</strong> {{ server.status }}</p>
-        <p><strong>Operating System:</strong> {{ server.os }}</p>
-        <p><strong>CPU Cores:</strong> {{ server.cpu_cores }}</p>
-        <p><strong>Memory (GB):</strong> {{ server.memory_gb }}</p>
-        <p><strong>Storage (GB):</strong> {{ server.storage_gb }}</p>
-        <p><strong>Last Updated:</strong> {{ server.last_updated }}</p>
-    </div>
-    {% endfor %}
+{% for server in servers %}
+<div class="server">
+    <h3>{{ server.name }}</h3>
+    <p><strong>Hostname:</strong> {{ server.hostname }}</p>
+    <p><strong>IP Address:</strong> {{ server.ip_address }}</p>
+    <p><strong>Location:</strong> {{ server.location }}</p>
+    <p><strong>Status:</strong> {{ server.status }}</p>
+    <p><strong>Operating System:</strong> {{ server.os }}</p>
+    <p><strong>CPU Cores:</strong> {{ server.cpu_cores }}</p>
+    <p><strong>Memory (GB):</strong> {{ server.memory_gb }}</p>
+    <p><strong>Storage (GB):</strong> {{ server.storage_gb }}</p>
+    <p><strong>Last Updated:</strong> {{ server.last_updated }}</p>
+</div>
+{% endfor %}
 
+{% include 'footer.html' %}
