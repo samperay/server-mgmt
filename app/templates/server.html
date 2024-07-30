@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .server {
+            border: 3px solid #ccc;
+            padding: 30px;
+            margin: 20px 650px 0;
+            border-radius: 5px;
+            width:400px;
+            height: 400px;
+        }
+        .server h3 {
+            margin: 0;
+            padding: 0;
+        }
+        .server p {
+            margin: 6px 0;
+        }
+    </style>
+</head>
+<body>
+    {% for server in servers %}
+    <div class="server">
+        <h3>{{ server.name }}</h3>
+        <p><strong>Hostname:</strong> {{ server.hostname }}</p>
+        <p><strong>IP Address:</strong> {{ server.ip_address }}</p>
+        <p><strong>Location:</strong> {{ server.location }}</p>
+        <p><strong>Status:</strong> {{ server.status }}</p>
+        <p><strong>Operating System:</strong> {{ server.os }}</p>
+        <p><strong>CPU Cores:</strong> {{ server.cpu_cores }}</p>
+        <p><strong>Memory (GB):</strong> {{ server.memory_gb }}</p>
+        <p><strong>Storage (GB):</strong> {{ server.storage_gb }}</p>
+        <p><strong>Last Updated:</strong> {{ server.last_updated }}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>

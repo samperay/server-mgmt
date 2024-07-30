@@ -31,7 +31,6 @@ def read_home(request: Request):
 @app.get("/servers", response_class=HTMLResponse)
 def read_servers(request: Request, db: Session = Depends(database.get_db)):
     servers = db.query(models.Server).all()
-    # don't display object id but only server data
     servers = [server.__dict__ for server in servers]
     for server in servers:
         server.pop("_sa_instance_state")
@@ -41,7 +40,6 @@ def read_servers(request: Request, db: Session = Depends(database.get_db)):
         {
             "request": request,
             "servers": servers,
-            "title": "Home",
         },
         status_code=200,
     )
