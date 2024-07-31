@@ -81,3 +81,8 @@ def get_server_by_id(
             },
         )
         return response
+
+
+@app.get("/create", response_class=HTMLResponse)
+def create_server(request: Request):
+    return templates.TemplateResponse("create.html", {"request": request})
