@@ -1,0 +1,79 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+<div class="container" style="margin-top: 1em;">
+    <form action="/servers/update" method="POST">
+        <input type="hidden" name="id" value="{{ server.id }}">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="nameDesc" value="{{ server.name }}">
+            <div id="nameDesc" class="form-text">Server name</div>
+        </div>
+        <div class="mb-3">
+            <label for="hostname" class="form-label">Hostname</label>
+            <input type="text" class="form-control" name="hostname" id="hostname" aria-describedby="hostnameDesc" value="{{ server.hostname }}">
+            <div id="hostnameDesc" class="form-text">Hostname of the server</div>
+        </div>
+        <div class="mb-3">
+            <label for="ip_address" class="form-label">IP address</label>
+            <input type="text" class="form-control" name="ip_address" id="ip_address" aria-describedby="ip_addressDesc" value="{{ server.ip_address }}">
+            <div id="ip_addressDesc" class="form-text">IP address of the server</div>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" name="location" id="location" aria-describedby="locationDesc" value="{{ server.location }}">
+            <div id="locationDesc" class="form-text">Data center location</div>
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <input type="text" class="form-control" name="status" id="status" aria-describedby="statusDesc" value="{{ server.status }}">
+            <div id="statusDesc" class="form-text">Current status of server</div>
+        </div>
+        <div class="mb-3">
+            <label for="os" class="form-label">Operating System</label>
+            <input type="text" class="form-control" name="os" id="os" aria-describedby="osDesc" value="{{ server.os }}">
+            <div id="osDesc" class="form-text">Server's operating system</div>
+        </div>
+        <div class="mb-3">
+            <label for="cpu_cores" class="form-label">CPU Cores</label>
+            <input type="text" class="form-control" name="cpu_cores" id="cpu_cores" aria-describedby="cpu_coresDesc" value="{{ server.cpu_cores }}">
+            <div id="cpu_coresDesc" class="form-text">CPU cores</div>
+        </div>
+        <div class="mb-3">
+            <label for="memory_gb" class="form-label">Memory (GB)</label>
+            <input type="text" class="form-control" name="memory_gb" id="memory_gb" aria-describedby="memory_gbDesc" value="{{ server.memory_gb }}">
+            <div id="memory_gbDesc" class="form-text">Memory in GB</div>
+        </div>
+        <div class="mb-3">
+            <label for="storage_gb" class="form-label">Storage (GB)</label>
+            <input type="text" class="form-control" name="storage_gb" id="storage_gb" aria-describedby="storage_gbDesc" value="{{ server.storage_gb }}">
+            <div id="storage_gbDesc" class="form-text">Storage in GB</div>
+        </div>
+        <div class="mb-3">
+            <label for="last_updated" class="form-label">Last Updated</label>
+            <input type="text" class="form-control" name="last_updated" id="last_updated" aria-describedby="timestampDesc" value="{{ server.last_updated }}">
+            <div id="timestampDesc" class="form-text">Timestamp of last update</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+
+<script>
+    window.onload = function() {
+        function pad(number) {
+            return number.toString().padStart(2, '0');
+        }
+
+        const now = new Date();
+        const formattedTimestamp = now.getFullYear() + '-' +
+            pad(now.getMonth() + 1) + '-' +
+            pad(now.getDate()) + ' ' +
+            pad(now.getHours()) + ':' +
+            pad(now.getMinutes()) + ':' +
+            pad(now.getSeconds()) + '.' +
+            now.getMilliseconds().toString().padStart(3, '0');
+
+        document.getElementById('last_updated').value = formattedTimestamp;
+    };
+</script>
+
+{% include 'footer.html' %}

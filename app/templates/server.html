@@ -6,12 +6,12 @@
         font-family: Arial, sans-serif;
     }
     .server {
-        border: 3px solid #ccc;
-        padding: 30px;
+        border: 2px solid #ccc;
+        padding: 10px;
         margin: 20px 650px 0;
         border-radius: 5px;
         width:400px;
-        height: 400px;
+        height: 430px;
     }
     .server h3 {
         margin: 0;
@@ -19,6 +19,14 @@
     }
     .server p {
         margin: 10px 0;
+    }
+
+    .btn {
+        padding: 5px 20px;
+        text-decoration: none;
+        border-radius: 5px; 
+        margin-left: 50px;
+        
     }
 </style>
 
@@ -34,6 +42,8 @@
     <p><strong>Memory (GB):</strong> {{ server.memory_gb }}</p>
     <p><strong>Storage (GB):</strong> {{ server.storage_gb }}</p>
     <p><strong>Last Updated:</strong> {{ server.last_updated }}</p>
+    <a class="btn btn-dark" href="/edit?name={{ server.hostname }}">Edit</a>
+    <a class="btn btn-danger" href="/delete?name={{ server.hostname }}">Delete</a>
 </div>
 {% endfor %}
 

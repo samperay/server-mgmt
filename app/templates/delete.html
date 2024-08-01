@@ -1,0 +1,12 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+<div class="container" style="margin-top: 1em;">
+    <h2>Delete Server</h2>
+    <p>Are you sure you want to delete the server "{{ server.name }}"?</p>
+    <form action="/servers/delete" method="POST">
+        <input type="hidden" name="id" value="{{ server.id }}">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="/servers" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% include 'footer.html' %}
