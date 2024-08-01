@@ -14,7 +14,7 @@
         </div>
         <div class="mb-3">
             <label for="model" class="form-label">IP address</label>
-            <input type="text" class="form-control" name="ipaddr" id="ipaddr" aria-describedby="yearDesc">
+            <input type="text" class="form-control" name="ip_address" id="ip_address" aria-describedby="yearDesc">
             <div id="yearDesc" class="form-text">IP address of the server.</div>
         </div>
         <div class="mb-3">
@@ -34,23 +34,23 @@
         </div>
         <div class="mb-3">
             <label for="model" class="form-label">CPU Cores</label>
-            <input type="text" class="form-control" name="cpucores" id="cpucores" aria-describedby="engineDesc">
+            <input type="text" class="form-control" name="cpu_cores" id="cpu_cores" aria-describedby="engineDesc">
             <div id="engineDesc " class="form-text">CPU Cores</div>
         </div>
         <div class="mb-3">
             <label for="model" class="form-label">Memory</label>
-            <input type="text" class="form-control" name="memory" id="memory" aria-describedby="engineDesc">
+            <input type="text" class="form-control" name="memory_gb" id="memory_gb" aria-describedby="engineDesc">
             <div id="engineDesc " class="form-text">Memory in GB</div>
         </div>
         <div class="mb-3">
             <label for="model" class="form-label">Storage</label>
-            <input type="text" class="form-control" name="storage" id="storage" aria-describedby="engineDesc">
+            <input type="text" class="form-control" name="storage_gb" id="storage_gb" aria-describedby="engineDesc">
             <div id="engineDesc " class="form-text">Storage</div>
         </div>
         <div class="mb-3">
             <label for="model" class="form-label">last updated</label>
-            <input type="text" class="form-control" name="timestamp" id="timestamp" aria-describedby="engineDesc">
-            <div id="engineDesc " class="form-text">Time stamp of last updated </div>
+            <input type="text" class="form-control" name="last_updated" id="last_updated" aria-describedby="engineDesc">
+            <div id="engineDesc " class="form-text">Current timestamp</div>
         </div>
 
 
@@ -73,7 +73,28 @@
                 <input class="form-check-input" type="checkbox" value="SA" name="sold">South America (SA)<br>
             </div>
         </div> -->
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+
+<script>
+    window.onload = function() {
+        function pad(number) {
+            return number.toString().padStart(2, '0');
+        }
+
+        const now = new Date();
+        const formattedTimestamp = now.getFullYear() + '-' +
+            pad(now.getMonth() + 1) + '-' +
+            pad(now.getDate()) + ' ' +
+            pad(now.getHours()) + ':' +
+            pad(now.getMinutes()) + ':' +
+            pad(now.getSeconds()) + '.' +
+            now.getMilliseconds().toString().padStart(3, '0');
+
+        document.getElementById('last_updated').value = formattedTimestamp;
+    };
+</script>
+
 {% include 'footer.html' %}

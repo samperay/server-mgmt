@@ -85,4 +85,38 @@ def get_server_by_id(
 
 @app.get("/create", response_class=HTMLResponse)
 def create_server(request: Request):
-    return templates.TemplateResponse("create.html", {"request": request})
+    return templates.TemplateResponse(
+        "create.html", {"request": request, "title": "Create Server"}
+    )
+
+
+@app.post("/servers", response_class=RedirectResponse)
+def add_server(
+    name=Form(...),
+    hostname=Form(...),
+    ip_address=Form(...),
+    location=Form(...),
+    status=Form(...),
+    os=Form(...),
+    cpu_cores=Form(...),
+    memory_gb=Form(...),
+    storage_gb=Form(...),
+    db: Session = Depends(database.get_db),
+):
+
+    server = models.Server(
+        name=name,
+        hostname=hostname,
+        ip_address=ip_address,
+        location=location,
+        status=status,
+        os=os,
+        cpu_cores=cpu_cores,
+        memory_gb=memory_gb,
+        storage_gb=storage_gb,
+    )
+
+    db.add(server)
+    db.commit()
+
+    return RedirectResponse(url="/servers", status_code=302)
